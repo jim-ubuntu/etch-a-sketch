@@ -13,8 +13,11 @@ document.body.appendChild(newCanvasButton)
 
 function createGrid(width=16){
 
-    if (width >100){
-        return alert("Error, must be smaller than 100.")
+    if (width >100 || width <0){
+        return alert("Error, must be greater than 0 and be smaller than 100.")
+    }
+    else if (!width){
+        width = 16;
     }
 
     for (let j=0;j<width;j++){
@@ -25,7 +28,17 @@ function createGrid(width=16){
             newBlock.style.width = "50px";
             newBlock.style.height = "50px";
             newBlock.addEventListener("mouseover", () => {
+            randomColourSelect = Math.floor(Math.random() * 3);
+            if (randomColourSelect == 0){
+                newBlock.style.background = "red";
+            }
+            else if (randomColourSelect == 1){
+                newBlock.style.background = "green";
+            }
+            else if (randomColourSelect == 2){
                 newBlock.style.background = "blue";
+            }
+               
             })
 
             row.appendChild(newBlock);
